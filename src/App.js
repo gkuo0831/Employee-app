@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Wrapper from "./Wrapper";
 import Search from "./Searchbar";
+import Header from "./Header";
 import "./App.css";
 
 function App() {
