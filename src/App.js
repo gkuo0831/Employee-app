@@ -1,5 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Wrapper from "./Wrapper";
+import Search from "./Searchbar";
+import "./App.css";
 
 function App() {
   return (
