@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Wrapper from "./Wrapper";
-import Search from "./Searchbar";
+import Searchbar from "./Searchbar";
 import Header from "./Header";
 import "./App.css";
 
