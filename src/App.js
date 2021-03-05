@@ -17,30 +17,18 @@ class App extends Component {
       "?inc=name,picture,location,registered,email,phone,dob&nat=US&results=30"
     );
   }
-
-  render() {
-    return (
-      <div className="container-fluid">
-        <Header />
-        <Search />
-
-        <Wrapper>
-          {this.state.employees.map((employee) => (
-            <EmployeeCard
-              removeEmployee={this.removeEmployee}
-              id={this.state.employees.indexOf(employee)}
-              key={this.state.employees.indexOf(employee)}
-              name={`${employee.name.title} ${employee.name.first} ${employee.name.last}`}
-              email={employee.email}
-              phone={employee.phone}
-              image={employee.picture.medium}
-            />
-          ))}
-        </Wrapper>
-        <Footer />
-      </div>
-    );
-  }
+  listEmployees = (query) => {
+    console.log("Got here");
+    API.getUsers(query)
+      .then((res) => {
+        this.setState({
+          employees: res.data.results,
+          allEmployees: res.data.results,
+        });
+        console.log(res.data.results);
+      })
+      .catch((err) => console.log(err));
+  };
 }
 
 export default App;
