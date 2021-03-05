@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Wrapper from "./Wrapper";
-import Header from "./Header";
-import Searchbar from "./Searchbar";
-import API from "./utils/API";
-import Card from "./Card";
+import Wrapper from "./Wrapper/index";
+import Header from "./Header/header";
+import Searchbar from "./Searchbar/search";
+import API from "./Utils/api";
+import Card from "./Card/employee";
 
 class App extends Component {
   state = {
