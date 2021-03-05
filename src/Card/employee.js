@@ -1,6 +1,6 @@
 import React from "react";
 
-const EmployeeCard = (props) => {
+const Employee = (props) => {
   return (
     <div className="card">
       <div className="img-container">
@@ -25,4 +25,4 @@ const EmployeeCard = (props) => {
     </div>
   );
 };
-export default EmployeeCard;
+export default Employee;

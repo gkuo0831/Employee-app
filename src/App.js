@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Wrapper from "./Wrapper";
-import Searchbar from "./Searchbar";
 import Header from "./Header";
-import "./App.css";
-import API from "./Utils/api";
+import Searchbar from "./Searchbar";
+import API from "./utils/API";
+import Card from "./Card";
 
 class App extends Component {
   state = {
@@ -17,6 +17,7 @@ class App extends Component {
       "?inc=name,picture,location,registered,email,phone,dob&nat=US&results=30"
     );
   }
+
   listEmployees = (query) => {
     console.log("Got here");
     API.getUsers(query)
@@ -29,6 +30,47 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   };
+
+  removeEmployee = (id) => {
+    const employees = this.state.employees.filter(
+      (employee) => this.state.employees.indexOf(employee) !== id
+    );
+    this.setState({ employees });
+  };
+
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+    const employees = this.state.allEmployees.filter((employee) =>
+      employee.name.trim().toLowerCase().includes(value.trim().toLowerCase())
+    );
+    this.setState({ employees });
+  };
+
+  render() {
+    return (
+      <div className="container-fluid">
+        <Header />
+        <Searchbar />
+
+        <Wrapper>
+          {this.state.employees.map((employee) => (
+            <Card
+              removeEmployee={this.removeEmployee}
+              id={this.state.employees.indexOf(employee)}
+              key={this.state.employees.indexOf(employee)}
+              name={`${employee.name.title} ${employee.name.first} ${employee.name.last}`}
+              email={employee.email}
+              phone={employee.phone}
+              image={employee.picture.medium}
+            />
+          ))}
+        </Wrapper>
+      </div>
+    );
+  }
 }
 
 export default App;
